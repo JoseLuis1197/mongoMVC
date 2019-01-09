@@ -22,6 +22,7 @@ namespace tests
             public int age { get; set; }
             public List<string> address = new List<string>();
             public Contact contact = new Contact(); 
+            public string ignoreMe { get; set; }
 
         }
 
@@ -39,7 +40,7 @@ namespace tests
             {
                 age = 54,
                 firstName = "Jose"
-
+                
             };
 
             person.address.Add("Av brasil 2980");
