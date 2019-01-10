@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.IO;
+using MongoDB.Bson.Serialization.Attributes;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 namespace tests
 {
     class PocoTests
-    {
+    {       
         public PocoTests()
         {
             JsonWriterSettings.Defaults.Indent = true;
@@ -22,8 +23,15 @@ namespace tests
             public int age { get; set; }
             public List<string> address = new List<string>();
             public Contact contact = new Contact(); 
+            [BsonIgnore]
             public string ignoreMe { get; set; }
-
+            [BsonElement("new")]
+            public string old { get; set; }
+            [BsonElement]
+            [BsonIgnoreIfNull]
+            private string encapsulated { get; set; }
+            [BsonRepresentation(BsonType.Double)]
+            public decimal gravity { get; set; }
         }
 
         public class Contact
@@ -39,7 +47,7 @@ namespace tests
             var person = new Person
             {
                 age = 54,
-                firstName = "Jose"
+                firstName = "Jose"                
                 
             };
 
@@ -47,6 +55,8 @@ namespace tests
             person.address.Add("Armando 221");
             person.contact.email = "jose@example.com";
             person.contact.phone = "989542515";
+            person.gravity = 12.33m;
+            
 
             Console.WriteLine(person.ToJson());
 
