@@ -32,9 +32,10 @@ namespace mongoProject.App_Start
 
         public IMongoCollection<PeopleModel> connection
         {
+            
             get
             {
-                return _database.GetCollection<PeopleModel>("cPeople");
+                return _database.GetCollection<PeopleModel>(ConfigurationManager.AppSettings["collection"]);
             }
         }
 
