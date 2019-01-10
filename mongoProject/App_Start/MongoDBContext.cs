@@ -17,7 +17,6 @@ namespace mongoProject.App_Start
             var serverName = ConfigurationManager.AppSettings["serverName"];
             var dataBaseName = ConfigurationManager.AppSettings["dataBaseName"];
 
-
             try
             {
               

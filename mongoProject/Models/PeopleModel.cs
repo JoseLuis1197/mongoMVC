@@ -12,7 +12,7 @@ namespace mongoProject.Models
     public class PeopleModel
     {
 
-        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
 
         [BsonElement("firstName")]
